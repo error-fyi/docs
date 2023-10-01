@@ -1,0 +1,19 @@
+[devshell]
+name = "develpment-shell"
+motd = """{106}Error.fyi Docs Development Shell{reset}
+
+Commands:
+ - start: starts the documentation website on port :3000
+ - install: installs modules
+ - build: builds the website
+
+Use CTRL-D to leave the shell
+"""
+
+packages = [
+    "yarn"
+]
+
+startup.yarn_start.text = "alias start='yarn start'"
+startup.yarn_install.text = "alias install='yarn'"
+startup.yarn_build.text = "alias install='yarn build'"
