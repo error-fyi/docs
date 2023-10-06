@@ -125,7 +125,7 @@ The tools ha done a few things:
 * Has wrapped the returning error with the **error.fyi error wrapper**.
 
 All the annotation values can be updated, even the error code, but for this example we'll limit to updating the
-required fields. More information about the annotations is available [here](./annotations).
+required fields. More information about the annotations is available [here](/docs/category/annotations).
 
 [Init] command can be used for already existing projects, and it will recursively explore the packages for errors.
 
