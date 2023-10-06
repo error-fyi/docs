@@ -7,7 +7,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'error.fyi',
-  tagline: 'Easy to maintain user facing errors',
+  tagline: 'Easily create and maintain public facing errors docs',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
@@ -64,8 +64,8 @@ const config = {
           {
             type: 'docSidebar',
             sidebarId: 'tutorialSidebar',
-            position: 'left',
-            label: 'Tutorial',
+            position: 'right',
+            label: '📚Docs',
           },
           {
             href: 'https://github.com/tfadeyi/errors',

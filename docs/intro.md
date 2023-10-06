@@ -4,44 +4,359 @@ sidebar_position: 1
 
 # Tutorial Intro
 
-Let's discover **Docusaurus in less than 5 minutes**.
+[![GitHub release](https://img.shields.io/github/v/release/tfadeyi/errors?color=green&style=for-the-badge)](https://github.com/tfadeyi/errors/releases)
+[![Nix Devshell](https://img.shields.io/badge/nix-devshell-blue?logo=NixOS&style=for-the-badge)](https://github.com/tfadeyi/errors)
+[![Continuous Integration](https://img.shields.io/github/actions/workflow/status/tfadeyi/errors/ci.yml?branch=main&style=for-the-badge)](https://github.com/tfadeyi/errors/actions/workflows/ci.yml)
+[![License](https://img.shields.io/badge/License-MIT-yellowgreen.svg?style=for-the-badge)](https://github.com/tfadeyi/errors/blob/main/LICENSE)
+[![Language](https://img.shields.io/github/go-mod/go-version/tfadeyi/errors?style=for-the-badge)](https://github.com/tfadeyi/errors)
+[![Go Report Card](https://goreportcard.com/badge/github.com/tfadeyi/errors?style=for-the-badge)](https://goreportcard.com/report/github.com/tfadeyi/errors)
+
+
+Let's discover how to **error.fyi tooling** to improve user facing error in a Go project.
 
 ## Getting Started
 
-Get started by **creating a new site**.
+Get started by installing error.fyi CLI, **fyictl**.
 
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
-
-### What you'll need
-
-- [Node.js](https://nodejs.org/en/download/) version 16.14 or above:
-  - When installing Node.js, you are recommended to check all checkboxes related to dependencies.
-
-## Generate a new site
-
-Generate a new Docusaurus site using the **classic template**.
-
-The classic template will automatically be added to your project after you run the command:
-
-```bash
-npm init docusaurus@latest my-website classic
+```shell
+curl -sfL https://raw.githubusercontent.com/tfadeyi/errors/main/install.sh | sh -
 ```
 
-You can type this command into Command Prompt, Powershell, Terminal, or any other integrated terminal of your code editor.
+and importing the Go client library.
 
-The command also installs all necessary dependencies you need to run Docusaurus.
-
-## Start your site
-
-Run the development server:
-
-```bash
-cd my-website
-npm run start
+```shell
+go get -u github.com/tfadeyi/errors@latest
 ```
 
-The `cd` command changes the directory you're working with. In order to work with your newly created Docusaurus site, you'll need to navigate the terminal there.
+### Add additional error context
 
-The `npm run start` command builds your website locally and serves it through a development server, ready for you to view at http://localhost:3000/.
+Once the previous prerequisites are met you should be ready to use **fyictl** to add more context
+to the errors in your Go projects.
 
-Open `docs/intro.md` (this page) and edit some lines: the site **reloads automatically** and displays your changes.
+We'll use this simple program, with only the `main.go`, to demonstrate the tool's utility.
+
+```go
+   package main
+    
+    import (
+        "errors"
+        "log"
+    )
+
+    func main() {
+        err := doSomething()
+        if err != nil {
+            log.Fatal(err)
+        }
+    }
+	
+    func doSomething() error {
+		// TODO improve this error message
+        err := errors.New("something went wrong, please try again")
+        return err
+    }
+```
+
+The program will print an error to the user telling them something went wrong. Although polite the error message 
+isn't answering the question a user might have when encountering an error:
+
+* **What caused the issue?**
+* **How they could solve the issue.**
+* **What to do to solve the issue.**
+
+Now let's use **fyictl** to improve thing.
+
+From your terminal window in the Go project directory run the following:
+
+```shell
+fyictl init --wrap
+```
+
+:::tip Note
+
+To configure fyictl to target errors with a TODO prefix you can add the `--todo` flag, like in the example:
+
+```shell
+fyictl init --wrap --todo
+```
+
+:::
+
+Now the program should look something like this:
+
+```go
+package main
+
+import (
+	"errors"
+	"log"
+
+	fyi "github.com/tfadeyi/errors"
+)
+
+// @fyi name <CHANGE ME>
+// @fyi title <CHANGE ME>
+// @fyi base_url <CHANGE ME>
+// @fyi version v0.1.0
+// @fyi description <CHANGE ME>
+func main() {
+	err := doSomething()
+	if err != nil {
+		log.Fatal(err)
+	}
+}
+
+func doSomething() error {
+	// TODO improve this error message
+	err := errors.New("something went wrong, please try again")
+	// @fyi.error code main_error_18
+	// @fyi.error title <CHANGE ME TO A NICE TITLE>
+	// @fyi.error short <TL;DR ON THE CAUSE OF THE ERROR>
+	// @fyi.error severity severe|medium|low
+	// @fyi.error.suggestion short <TL;DR ON HOW CAN THE ERROR BE FIXED?>
+	return fyi.Error(err, "main_error_18")
+}
+
+```
+
+The tools ha done a few things:
+* Has added annotations above the `main()` with fields to describe the application.
+* Has added annotations around the error, that add additional context to the error.
+* Has wrapped the returning error with the **error.fyi error wrapper**.
+
+All the annotation values can be updated, even the error code, but for this example we'll limit to updating the
+required fields. More information about the annotations is available [here](./annotations).
+
+[Init] command can be used for already existing projects, and it will recursively explore the packages for errors.
+
+:::tip Note
+
+Fyictl also provides an **annotate** command which annotate a single file
+
+```shell
+fyictl annotate -f main.go
+```
+
+:::
+
+```go
+package main
+
+import (
+	"errors"
+	"log"
+
+	fyi "github.com/tfadeyi/errors"
+)
+
+// @fyi name example-app
+// @fyi title Example App
+// @fyi base_url docs.example.com
+// @fyi version v0.1.0
+func main() {
+	err := doSomething()
+	if err != nil {
+		log.Fatal(err)
+	}
+}
+
+func doSomething() error {
+	// TODO improve this error message
+	err := errors.New("something went wrong, please try again")
+	// @fyi.error code main_error_18
+	// @fyi.error title Transaction Error
+	// @fyi.error short There was an error during transaction, value exceeded limit
+	// @fyi.error severity low
+	// @fyi.error.suggestion short Retry the transaction with a lower input value
+	return fyi.Error(err, "main_error_18")
+}
+```
+
+Now we can generate the application error manifest, this a yaml manifest containing information about the different errors
+in an application.
+
+From the terminal run:
+
+```shell
+fyictl manifest -o errors.yaml 
+```
+
+The following our simple program application error manifest.
+
+<details>
+  <summary>Example error manifest.</summary>
+
+```yaml
+---
+# Code generated by fyictl: https://github.com/tfadeyi/errors.
+# DO NOT EDIT.
+base_url: docs.example.com
+errors_definitions:
+    main_error_18:
+        code: main_error_18
+        meta:
+            loc:
+                filename: main.go
+                line: 24
+        severity: low
+        short: There was an error during transaction, value exceeded limit
+        suggestions:
+            "1":
+                error_code: main_error_18
+                id: "1"
+                short: Retry the transaction with a lower input value
+        title: Transaction Error
+name: example-app
+title: Example App
+version: v0.1.0
+```
+
+</details>
+
+Once we have the manifest we can embed it into our application and make it available at runtime.
+
+```go
+package main
+
+import (
+	"errors"
+	"log"
+	_"embed"
+
+	fyi "github.com/tfadeyi/errors"
+)
+
+//go:embed errors.yaml
+var errorsYAML []byte
+
+// @fyi name example-app
+// @fyi title Example App
+// @fyi base_url docs.example.com
+// @fyi version v0.1.0
+func main() {
+	fyi.Manifest(errorsYAML)
+	err := doSomething()
+	if err != nil {
+		log.Fatal(err)
+	}
+}
+
+func doSomething() error {
+	// TODO improve this error message
+	err := errors.New("something went wrong, please try again")
+	// @fyi.error code main_error_18
+	// @fyi.error title Transaction Error
+	// @fyi.error short There was an error during transaction, value exceeded limit
+	// @fyi.error severity low
+	// @fyi.error.suggestion short Retry the transaction with a lower input value
+	return fyi.Error(err, "main_error_18")
+}
+```
+
+Let's now run our simple application:
+
+<details>
+  <summary>Example error output.</summary>
+
+```shell
+$ go run main.go
+2023/10/03 22:46:12 [something went wrong, please try again]
+
+   TRANSACTION ERROR                                                          
+                                                                              
+  ## What caused the error                                                    
+                                                                              
+  There was an error during transaction, value exceeded limit                 
+                                                                              
+  ## Quick Solutions                                                          
+                                                                              
+  │ Additional information is available at: docs.example.com/example-          
+  │ app/errors/main_error_18                                                   
+                                                                              
+  • Suggestion: Retry the transaction with a lower input value                
+
+exit status 1
+```
+
+</details>
+
+
+### Generate Markdown Documentation
+
+`fyictl` also allows you to further generate markdown documentation based on the error manifest.
+
+```shell
+fyictl docs generate -f errors.yaml 
+```
+
+This will generate the markdown documentation under the default directory `./docs`.
+
+:::tip Note
+
+You can change the output directory by specifying the flag `--output` followed by the directory you want to target.
+
+:::
+
+```shell
+.
+├── docs
+│   ├── main_error_18.md
+└── index.md
+1 directory, 2 files
+
+```
+
+<details>
+  <summary>Example of `index.md` contents.</summary>
+
+```markdown
+---
+title: example-app
+---
+
+## example-app
+
+**Application**: example-app
+**Version**: v0.1.0
+
+### Error definitions
+
+
+* [**main_error_18**](./errors/main_error_18): There was an error during transaction, value exceeded limit
+
+```
+
+</details>
+
+
+<details>
+  <summary>Example of `error definition`.</summary>
+
+```markdown
+---
+title: Transaction Error
+code: main_error_18
+---
+
+## Transaction Error
+
+**Code**: main_error_18
+
+### Summary
+
+There was an error during transaction, value exceeded limit
+
+```
+
+</details>
+
+### Expose Documentation
+
+Once the documentation is generated you can use tools like GitHub Pages to host and expose it to your application's
+users.
+
+#### GitHub Pages
+
+Check GitHub's [docs](https://docs.github.com/en/enterprise-cloud@latest/pages/quickstart#creating-your-website) for how to setup a static [page](https://docs.github.com/en/enterprise-cloud@latest/pages/quickstart#creating-your-website).
+
+Make sure to set the Custom Domain value to match what was defined in `@fyi base_url docs.example.com`.
