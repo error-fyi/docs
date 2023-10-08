@@ -1,6 +1,8 @@
-# Website
+[![Netlify Status](https://api.netlify.com/api/v1/badges/3a9c663e-4400-49f3-a619-5643e55e1bde/deploy-status)](https://app.netlify.com/sites/cheery-sprinkles-ca2742/deploys)
 
-This website is built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator.
+# Error.fyi Documentation Site
+
+This website is built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator and deployed automatically on Netlify.
 
 ## Prerequisite
 
