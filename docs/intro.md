@@ -91,7 +91,7 @@ import (
 	"errors"
 	"log"
 
-	fyi "github.com/tfadeyi/errors"
+	fyi "github.com/error-fyi/go-fyi"
 )
 
 // @fyi name <CHANGE ME>
@@ -146,7 +146,7 @@ import (
 	"errors"
 	"log"
 
-	fyi "github.com/tfadeyi/errors"
+	fyi "github.com/error-fyi/go-fyi"
 )
 
 // @fyi name example-app
@@ -223,7 +223,7 @@ import (
 	"log"
 	_"embed"
 
-	fyi "github.com/tfadeyi/errors"
+	fyi "github.com/error-fyi/go-fyi"
 )
 
 //go:embed errors.yaml
