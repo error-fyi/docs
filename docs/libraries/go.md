@@ -4,6 +4,14 @@ sidebar_position: 1
 
 # Golang Error Wrapper
 
+[![GitHub tag](https://img.shields.io/github/v/tag/error-fyi/go-fyi?color=green&style=for-the-badge)](https://github.com/error-fyi/go-fyi/tags)
+[![Nix Devshell](https://img.shields.io/badge/nix-devshell-blue?logo=NixOS&style=for-the-badge)](https://github.com/error-fyi/go-fyi)
+[![Continuous Integration](https://img.shields.io/github/actions/workflow/status/tfadeyi/errors/ci.yml?branch=main&style=for-the-badge)](https://github.com/error-fyi/go-fyi/actions/workflows/ci.yml)
+[![License](https://img.shields.io/badge/License-MIT-yellowgreen.svg?style=for-the-badge)](https://github.com/tfadeyi/errors/blob/main/LICENSE)
+[![Language](https://img.shields.io/github/go-mod/go-version/error-fyi/go-fyi?style=for-the-badge)](https://github.com/error-fyi/go-fyi)
+[![Go Report Card](https://goreportcard.com/badge/github.com/error-fyi/go-fyi?style=for-the-badge)](https://goreportcard.com/report/github.com/error-fyi/go-fyi)
+
+
 ```go
 import "github.com/error-fyi/go-fyi"
 ```
