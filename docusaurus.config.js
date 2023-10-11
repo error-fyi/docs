@@ -7,7 +7,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'error.fyi',
-  tagline: 'Easily create and maintain public facing errors docs',
+  tagline: 'Easily create and maintain public facing errors documentation',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
