@@ -22,7 +22,7 @@ Present on your host machine.
 Simply run, in your terminal:
 
 ```shell
-curl -sfL https://raw.githubusercontent.com/tfadeyi/errors/main/install.sh | sh -
+curl -sfL https://raw.githubusercontent.com/error-fyi/fyictl/main/install.sh | sh -
 ```
 
 Then follow the instruction returned to the terminal.
