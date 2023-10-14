@@ -4,13 +4,6 @@ sidebar_position: 1
 
 # Tutorial Intro
 
-[![GitHub release](https://img.shields.io/github/v/release/error-fyi/fyictl?color=green&style=for-the-badge)](https://github.com/error-fyi/fyictl/releases)
-[![Nix Devshell](https://img.shields.io/badge/nix-devshell-blue?logo=NixOS&style=for-the-badge)](https://github.com/error-fyi/fyictl)
-[![Continuous Integration](https://img.shields.io/github/actions/workflow/status/error-fyi/fyictl/ci.yml?branch=main&style=for-the-badge)](https://github.com/error-fyi/fyictl/actions/workflows/ci.yml)
-[![License](https://img.shields.io/badge/License-MIT-yellowgreen.svg?style=for-the-badge)](https://github.com/error-fyi/fyictl/blob/main/LICENSE)
-[![Language](https://img.shields.io/github/go-mod/go-version/error-fyi/fyictl?style=for-the-badge)](https://github.com/error-fyi/fyictl)
-[![Go Report Card](https://goreportcard.com/badge/github.com/error-fyi/fyictl?style=for-the-badge)](https://goreportcard.com/report/github.com/error-fyi/fyictl)
-
 
 Let's discover how **error.fyi tooling** can be used to improve user facing error in a Go project.
 
