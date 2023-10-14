@@ -4,28 +4,28 @@ sidebar_position: 1
 
 # Tutorial Intro
 
-[![GitHub release](https://img.shields.io/github/v/release/tfadeyi/errors?color=green&style=for-the-badge)](https://github.com/tfadeyi/errors/releases)
-[![Nix Devshell](https://img.shields.io/badge/nix-devshell-blue?logo=NixOS&style=for-the-badge)](https://github.com/tfadeyi/errors)
-[![Continuous Integration](https://img.shields.io/github/actions/workflow/status/tfadeyi/errors/ci.yml?branch=main&style=for-the-badge)](https://github.com/tfadeyi/errors/actions/workflows/ci.yml)
-[![License](https://img.shields.io/badge/License-MIT-yellowgreen.svg?style=for-the-badge)](https://github.com/tfadeyi/errors/blob/main/LICENSE)
-[![Language](https://img.shields.io/github/go-mod/go-version/tfadeyi/errors?style=for-the-badge)](https://github.com/tfadeyi/errors)
-[![Go Report Card](https://goreportcard.com/badge/github.com/tfadeyi/errors?style=for-the-badge)](https://goreportcard.com/report/github.com/tfadeyi/errors)
+[![GitHub release](https://img.shields.io/github/v/release/error-fyi/fyictl?color=green&style=for-the-badge)](https://github.com/error-fyi/fyictl/releases)
+[![Nix Devshell](https://img.shields.io/badge/nix-devshell-blue?logo=NixOS&style=for-the-badge)](https://github.com/error-fyi/fyictl)
+[![Continuous Integration](https://img.shields.io/github/actions/workflow/status/error-fyi/fyictl/ci.yml?branch=main&style=for-the-badge)](https://github.com/error-fyi/fyictl/actions/workflows/ci.yml)
+[![License](https://img.shields.io/badge/License-MIT-yellowgreen.svg?style=for-the-badge)](https://github.com/error-fyi/fyictl/blob/main/LICENSE)
+[![Language](https://img.shields.io/github/go-mod/go-version/error-fyi/fyictl?style=for-the-badge)](https://github.com/error-fyi/fyictl)
+[![Go Report Card](https://goreportcard.com/badge/github.com/error-fyi/fyictl?style=for-the-badge)](https://goreportcard.com/report/github.com/error-fyi/fyictl)
 
 
-Let's discover how to **error.fyi tooling** to improve user facing error in a Go project.
+Let's discover how **error.fyi tooling** can be used to improve user facing error in a Go project.
 
 ## Getting Started
 
 Get started by installing error.fyi CLI, **fyictl**.
 
 ```shell
-curl -sfL https://raw.githubusercontent.com/tfadeyi/errors/main/install.sh | sh -
+curl -sfL https://raw.githubusercontent.com/error-fyi/fyictl/main/install.sh | sh -
 ```
 
 and importing the Go client library.
 
 ```shell
-go get -u github.com/tfadeyi/errors@latest
+go get -u github.com/error-fyi/go-fyi@latest
 ```
 
 ### Add additional error context

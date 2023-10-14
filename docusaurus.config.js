@@ -40,7 +40,7 @@ const config = {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           editUrl:
-            'https://github.com/tfadeyi/errors',
+            'https://github.com/error-fyi/docs',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -53,7 +53,7 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       // Replace with your project's social card
-      image: 'img/docusaurus-social-card.jpg',
+      image: 'img/logo.png',
       navbar: {
         title: '',
         logo: {
@@ -68,7 +68,7 @@ const config = {
             label: '📚Docs',
           },
           {
-            href: 'https://github.com/tfadeyi/errors',
+            href: 'https://github.com/error-fyi',
             label: 'GitHub',
             position: 'right',
           },
@@ -90,8 +90,12 @@ const config = {
             title: 'More',
             items: [
               {
-                label: 'GitHub',
-                href: 'https://github.com/tfadeyi/errors',
+                label: 'go-fyi',
+                href: 'https://github.com/error-fyi/go-fyi',
+              },
+              {
+                label: 'fyictl',
+                href: 'https://github.com/error-fyi/fyictl',
               },
             ],
           },
