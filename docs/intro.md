@@ -120,7 +120,7 @@ The tools ha done a few things:
 All the annotation values can be updated, even the error code, but for this example we'll limit to updating the
 required fields. More information about the annotations is available [here](/docs/category/annotations).
 
-[Init] command can be used for already existing projects, and it will recursively explore the packages for errors.
+[Init](/docs/cli/fyictl_init.md) command can be used for already existing projects, and it will recursively explore the packages for errors.
 
 :::tip Note
 
